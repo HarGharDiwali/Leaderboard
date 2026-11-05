@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Har Ghar Diwali | Captain Leaderboard</title>
+<title>Har Ghar Diwali | Captain's Leaderboard</title>
 
 <style>
 :root {
@@ -12,14 +12,18 @@
   --green: #a5c932;
   --navy: #102c40;
   --gold: #f4c75e;
-  --silver: #c8d4df;
-  --bronze: #c58b61;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
 
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
   color: white;
   background:
@@ -28,22 +32,25 @@ body {
   min-height: 100vh;
 }
 
+/* HEADER */
 header {
   text-align: center;
-  padding: 5px 16px 2px;
+  padding: 24px 16px 5px;
 }
 
 .logo {
   max-width: 230px;
   max-height: 130px;
+  width: auto;
+  height: auto;
   object-fit: contain;
   display: block;
-  margin: 0 auto 16px;
+  margin: 0 auto 5px;
 }
 
 h1 {
   font-size: clamp(27px, 4vw, 48px);
-  margin: 8px 0;
+  margin: 5px 0;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -60,30 +67,31 @@ h1 {
   height: 4px;
   background: var(--green);
   border-radius: 10px;
-  margin: 20px auto;
+  margin: 12px auto;
 }
 
 .summary {
   text-align: center;
   color: #d2e8f0;
   font-size: 14px;
-  margin-bottom: 25px;
+  margin: 5px 0 12px;
 }
 
+/* TOP THREE PODIUM */
 .podium {
   display: flex;
   align-items: end;
   justify-content: center;
   gap: 15px;
   max-width: 850px;
-  margin: 25px auto 45px;
+  margin: 12px auto 35px;
   padding: 0 15px;
 }
 
 .winner {
   width: 31%;
   text-align: center;
-  padding: 22px 12px;
+  padding: 18px 12px;
   border: 1px solid #ffffff24;
   border-radius: 18px 18px 8px 8px;
   background: linear-gradient(160deg,#234a60,#112e43);
@@ -93,8 +101,8 @@ h1 {
 
 .winner.first {
   width: 36%;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   border: 2px solid var(--gold);
   background: linear-gradient(160deg,#345b70,#16374c);
   box-shadow: 0 0 35px #e9bd5030;
@@ -109,7 +117,9 @@ h1 {
   margin: 8px 0;
 }
 
-.first .rank-label { font-size: 14px; }
+.first .rank-label {
+  font-size: 14px;
+}
 
 .crown {
   font-size: 42px;
@@ -139,7 +149,9 @@ h1 {
   overflow-wrap: anywhere;
 }
 
-.first .captain-name { font-size: 21px; }
+.first .captain-name {
+  font-size: 21px;
+}
 
 .zone {
   color: #b9d6e1;
@@ -148,23 +160,25 @@ h1 {
 
 .score {
   color: var(--gold);
-  font-size: 27px;
+  font-size: 36px;
   font-weight: bold;
   margin-top: 12px;
 }
 
-.first .score { font-size: 34px; }
-
-.medal {
-  font-size: 27px;
-  margin-bottom: 6px;
+.first .score {
+  font-size: 42px;
 }
 
+.score small {
+  font-size: 13px;
+}
+
+/* REMAINING RANKINGS */
 .section-heading {
   text-align: center;
   font-size: 19px;
   letter-spacing: 3px;
-  margin: 30px 0 20px;
+  margin: 25px 0 20px;
 }
 
 .rankings {
@@ -186,7 +200,10 @@ h1 {
   transition: transform .35s ease, background .35s ease;
 }
 
-.rank-row:hover { transform: translateX(5px); background: #ffffff18; }
+.rank-row:hover {
+  transform: translateX(5px);
+  background: #ffffff18;
+}
 
 .rank-number {
   width: 35px;
@@ -205,15 +222,31 @@ h1 {
   border: 2px solid #7eb8d0;
 }
 
-.rank-info { flex: 1; min-width: 0; }
-.rank-info strong { display: block; font-size: 15px; }
-.rank-info small { color: #b7d3df; display: block; margin-top: 5px; }
+.rank-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.rank-info strong {
+  display: block;
+  font-size: 15px;
+}
+
+.rank-info small {
+  color: #b7d3df;
+  display: block;
+  margin-top: 5px;
+}
 
 .rank-score {
-  font-size: 21px;
+  font-size: 28px;
   font-weight: bold;
   color: var(--gold);
   white-space: nowrap;
+}
+
+.rank-score small {
+  font-size: 13px;
 }
 
 footer {
@@ -224,54 +257,157 @@ footer {
   border-top: 1px solid #ffffff1c;
 }
 
+/* ANIMATIONS */
 @keyframes rise {
-  from { opacity: 0; transform: translateY(25px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes appear {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes crown {
-  0%,100% { transform: translateY(0) rotate(-4deg); }
-  50% { transform: translateY(-7px) rotate(4deg); }
+  0%,100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-7px) rotate(4deg);
+  }
 }
 
-@media(max-width:600px) {
-  .podium { gap: 7px; padding: 0 8px; }
-  .winner { padding: 15px 5px; }
-  .winner.first { padding: 20px 5px; }
-  .avatar { width: 65px; height: 65px; }
-  .first .avatar { width: 82px; height: 82px; }
-  .captain-name { font-size: 12px; }
-  .first .captain-name { font-size: 15px; }
-  .score { font-size: 20px; }
-  .first .score { font-size: 25px; }
-  .crown { font-size: 30px; }
-  .rank-row { gap: 9px; padding: 11px; }
-}
-/* FINAL MOBILE HEADER SPACING FIX */
-@media screen and (max-width: 600px) {
-  body header {
-    padding: 0px 12px 0px !important;
+/* MOBILE RESPONSIVE */
+@media (max-width: 600px) {
+
+  /* Keep logo original size, reduce only surrounding gaps */
+  header {
+    padding: 4px 12px 0 !important;
     margin: 0 !important;
   }
 
-  body header .logo {
-    display: block !important;
-    margin: 0 auto 0px !important;
-    max-width: 230px !important;
-    max-height: 130px !important;
+  .logo {
+    max-width: 230px;
+    max-height: 130px;
+    margin: 0 auto 2px !important;
   }
 
-  body header h1 {
-    margin-top: 0px !important;
+  h1 {
+    font-size: 28px;
+    margin: 2px 0 !important;
+    letter-spacing: 1px;
   }
 
-  body header .subtitle {
-    margin-top: 0px !important;
+  .subtitle {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .green-line {
+    margin: 7px auto !important;
+  }
+
+  .summary {
+    font-size: 13px;
+    margin: 3px 0 7px !important;
+  }
+
+  .podium {
+    gap: 6px;
+    margin: 5px auto 22px !important;
+    padding: 0 8px;
+  }
+
+  .winner {
+    padding: 12px 4px;
+  }
+
+  .winner.first {
+    padding: 16px 4px;
+  }
+
+  .avatar {
+    width: 58px;
+    height: 58px;
+  }
+
+  .first .avatar {
+    width: 68px;
+    height: 68px;
+  }
+
+  .crown {
+    font-size: 26px;
+  }
+
+  .medal {
+    font-size: 21px;
+  }
+
+  .rank-label {
+    font-size: 10px;
+    margin: 5px 0;
+  }
+
+  .captain-name {
+    font-size: 11px;
+    margin: 7px 0 4px;
+  }
+
+  .first .captain-name {
+    font-size: 13px;
+  }
+
+  .score {
+    font-size: 18px;
+    margin-top: 7px;
+  }
+
+  .first .score {
+    font-size: 22px;
+  }
+
+  .score small {
+    font-size: 10px;
+  }
+
+  .section-heading {
+    font-size: 16px;
+    margin: 20px 0 15px;
+  }
+
+  .rankings {
+    padding: 0 10px 30px;
+  }
+
+  .rank-row {
+    gap: 9px;
+    padding: 11px;
+  }
+
+  .rank-row img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .rank-score {
+    font-size: 21px;
+  }
+
+  .rank-score small {
+    font-size: 10px;
   }
 }
 </style>
@@ -280,15 +416,17 @@ footer {
 <body>
 
 <header>
-  <!-- Upload your logo into the repository and use its exact filename here -->
-  <img class="logo" src="HarGharDiwaliLogo.png"
+  <img class="logo"
+       src="HarGharDiwaliLogo.png"
        alt="Har Ghar Diwali"
        onerror="this.style.display='none'">
 
   <h1>Captain's Leaderboard</h1>
   <div class="subtitle">HAR GHAR DIWALI • CLOSING CHAMPIONS</div>
   <div class="green-line"></div>
-  <div class="summary" id="summary">Celebrating our champions across India</div>
+  <div class="summary" id="summary">
+    Celebrating our champions across India
+  </div>
 </header>
 
 <main>
@@ -305,10 +443,12 @@ footer {
 </footer>
 
 <script>
-// STEP 2: We will insert your published Google Sheet CSV URL here.
- const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6rUqRzJgg2fg00coBH7XaFG87V9Pysao89oL3xW1f-beEG82H9X5tEKvQqWQOf57b-2zruZ9Gv7zq/pub?gid=717839790&single=true&output=csv";
 
-// Sample preview data. Your actual Google Sheet will replace this.
+/* GOOGLE SHEETS CONNECTION */
+const SHEET_CSV_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6rUqRzJgg2fg00coBH7XaFG87V9Pysao89oL3xW1f-beEG82H9X5tEKvQqWQOf57b-2zruZ9Gv7zq/pub?gid=717839790&single=true&output=csv";
+
+/* SAMPLE DATA - USED ONLY IF SHEET URL IS EMPTY */
 const sampleData = [
   {zone:"West",name:"Anupam Saxena",score:3,photo:""},
   {zone:"West",name:"Sanjay Choulkar",score:6,photo:""},
@@ -323,109 +463,156 @@ const sampleData = [
   {zone:"South III",name:"Vishwanath Belliappa",score:2,photo:""}
 ];
 
-let previousOrder = [];
-
 function avatarHTML(photo, name) {
-  const safeName = String(name).replace(/&/g,"&amp;").replace(/"/g,"&quot;");
+  const safeName = String(name)
+    .replace(/&/g,"&amp;")
+    .replace(/"/g,"&quot;");
+
   if (photo) {
-    return `<img class="avatar" src="${photo}" alt="${safeName}"
+    return `<img class="avatar"
+      src="${photo}"
+      alt="${safeName}"
       onerror="this.style.display='none'">`;
   }
-  return `<div class="avatar" style="display:inline-flex;align-items:center;justify-content:center;color:#17394d;font-weight:bold;font-size:25px">${safeName.charAt(0).toUpperCase()}</div>`;
+
+  return `<div class="avatar"
+    style="display:inline-flex;align-items:center;justify-content:center;color:#17394d;font-weight:bold;font-size:25px">
+    ${safeName.charAt(0).toUpperCase()}
+  </div>`;
 }
 
+/* RENDER LEADERBOARD */
 function render(data) {
-  data.sort((a,b) => b.score - a.score || a.name.localeCompare(b.name));
+  data.sort((a,b) =>
+    b.score - a.score || a.name.localeCompare(b.name)
+  );
 
   const top = data.slice(0,3);
+
   const positions = [
-    {rank:2, item:top[1], cls:"second", medal:"🥈"},
-    {rank:1, item:top[0], cls:"first", medal:""},
-    {rank:3, item:top[2], cls:"third", medal:"🥉"}
+    {rank:2,item:top[1],cls:"second",medal:"🥈"},
+    {rank:1,item:top[0],cls:"first",medal:""},
+    {rank:3,item:top[2],cls:"third",medal:"🥉"}
   ].filter(x=>x.item);
 
-  document.getElementById("podium").innerHTML = positions.map(p => `
-    <div class="winner ${p.cls}" key="${p.item.name}">
-      ${p.rank===1?'<span class="crown">👑</span>':`<div class="medal">${p.medal}</div>`}
-      <div class="rank-label">RANK ${p.rank}</div>
-      ${avatarHTML(p.item.photo,p.item.name)}
-      <div class="captain-name">${p.item.name}</div>
-      <div class="zone">${p.item.zone}</div>
-      <div class="score">${p.item.score} <small style="font-size:12px">CLOSINGS</small></div>
-    </div>
-  `).join("");
-
-  document.getElementById("rankings").innerHTML = data.slice(3).map((p,i)=>`
-    <div class="rank-row">
-      <div class="rank-number">${i+4}</div>
-      ${avatarHTML(p.photo,p.name)}
-      <div class="rank-info">
-        <strong>${p.name}</strong>
-        <small>${p.zone}</small>
+  document.getElementById("podium").innerHTML =
+    positions.map(p => `
+      <div class="winner ${p.cls}">
+        ${p.rank===1
+          ? '<span class="crown">👑</span>'
+          : `<div class="medal">${p.medal}</div>`}
+        <div class="rank-label">RANK ${p.rank}</div>
+        ${avatarHTML(p.item.photo,p.item.name)}
+        <div class="captain-name">${p.item.name}</div>
+        <div class="zone">${p.item.zone}</div>
+        <div class="score">
+          ${p.item.score}
+          <small>CLOSINGS</small>
+        </div>
       </div>
-      <div class="rank-score">${p.score} <small style="font-size:10px">CLOSINGS</small></div>
-    </div>
-  `).join("");
+    `).join("");
+
+  document.getElementById("rankings").innerHTML =
+    data.slice(3).map((p,i)=>`
+      <div class="rank-row">
+        <div class="rank-number">${i+4}</div>
+        ${avatarHTML(p.photo,p.name)}
+        <div class="rank-info">
+          <strong>${p.name}</strong>
+          <small>${p.zone}</small>
+        </div>
+        <div class="rank-score">
+          ${p.score}
+          <small>CLOSINGS</small>
+        </div>
+      </div>
+    `).join("");
 
   document.getElementById("summary").textContent =
-    `${data.length} Captains • ${data.reduce((s,p)=>s+p.score,0)} Total Closings`;
+    `${data.length} Captains • ${
+      data.reduce((s,p)=>s+p.score,0)
+    } Total Closings`;
 
-  previousOrder = data.map(p=>p.name);
   document.getElementById("updated").textContent =
-    "Last updated: " + new Date().toLocaleTimeString("en-IN");
+    "Last updated: " +
+    new Date().toLocaleTimeString("en-IN");
 }
 
-// CSV parser supporting quoted cells.
+/* CSV PARSER */
 function parseCSV(text) {
   const rows = [];
   let row = [], cell = "", quoted = false;
+
   for(let i=0;i<text.length;i++) {
     const c=text[i];
+
     if(c === '"' && quoted && text[i+1] === '"') {
-      cell+='"'; i++;
+      cell+='"';
+      i++;
     } else if(c === '"') {
       quoted=!quoted;
     } else if(c === ',' && !quoted) {
-      row.push(cell); cell="";
+      row.push(cell);
+      cell="";
     } else if((c === '\n' || c === '\r') && !quoted) {
       if(c === '\r' && text[i+1] === '\n') i++;
       row.push(cell);
       if(row.some(v=>v.trim())) rows.push(row);
-      row=[]; cell="";
+      row=[];
+      cell="";
     } else {
       cell+=c;
     }
   }
+
   row.push(cell);
   if(row.some(v=>v.trim())) rows.push(row);
+
   return rows;
 }
 
+/* FETCH LIVE GOOGLE SHEET DATA */
 async function refresh() {
+
   if(!SHEET_CSV_URL) {
     render([...sampleData]);
     return;
   }
+
   try {
-    const response=await fetch(SHEET_CSV_URL + (SHEET_CSV_URL.includes("?")?"&":"?") + "t="+Date.now());
+    const response = await fetch(
+      SHEET_CSV_URL +
+      (SHEET_CSV_URL.includes("?") ? "&" : "?") +
+      "t=" + Date.now()
+    );
+
     if(!response.ok) throw new Error("Sheet not available");
-    const rows=parseCSV(await response.text());
-    const data=rows.slice(1).filter(r=>r[1] && r[1].trim()).map(r=>({
-      zone:r[0] || "",
-      name:r[1].trim(),
-      score:Number(r[2]) || 0,
-      photo:r[3] || ""
-    }));
+
+    const rows = parseCSV(await response.text());
+
+    const data = rows.slice(1)
+      .filter(r=>r[1] && r[1].trim())
+      .map(r=>({
+        zone:r[0] || "",
+        name:r[1].trim(),
+        score:Number(r[2]) || 0,
+        photo:r[3] || ""
+      }));
+
     render(data);
+
   } catch(error) {
     console.error(error);
+
     document.getElementById("updated").textContent =
       "Unable to refresh data. Showing last available preview.";
   }
 }
 
+/* INITIAL LOAD + AUTOMATIC UPDATES */
 refresh();
 setInterval(refresh,60000);
+
 </script>
 </body>
 </html>
