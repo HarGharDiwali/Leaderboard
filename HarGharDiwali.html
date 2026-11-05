@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Har Ghar Diwali | Captain Leaderboard</title>
+
+<style>
+:root {
+  --blue: #168fca;
+  --green: #a5c932;
+  --navy: #102c40;
+  --gold: #f4c75e;
+  --silver: #c8d4df;
+  --bronze: #c58b61;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  background:
+    radial-gradient(ellipse at 50% 0%, #24536d 0%, transparent 60%),
+    linear-gradient(145deg, #071c2b, #102e43 65%, #071c2b);
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  padding: 30px 16px 12px;
+}
+
+.logo {
+  max-width: 230px;
+  max-height: 130px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 16px;
+}
+
+h1 {
+  font-size: clamp(27px, 4vw, 48px);
+  margin: 8px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  color: #b6dce9;
+  letter-spacing: 4px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.green-line {
+  width: 100px;
+  height: 4px;
+  background: var(--green);
+  border-radius: 10px;
+  margin: 20px auto;
+}
+
+.summary {
+  text-align: center;
+  color: #d2e8f0;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.podium {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: 15px;
+  max-width: 850px;
+  margin: 25px auto 45px;
+  padding: 0 15px;
+}
+
+.winner {
+  width: 31%;
+  text-align: center;
+  padding: 22px 12px;
+  border: 1px solid #ffffff24;
+  border-radius: 18px 18px 8px 8px;
+  background: linear-gradient(160deg,#234a60,#112e43);
+  position: relative;
+  animation: rise .7s ease both;
+}
+
+.winner.first {
+  width: 36%;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  border: 2px solid var(--gold);
+  background: linear-gradient(160deg,#345b70,#16374c);
+  box-shadow: 0 0 35px #e9bd5030;
+  animation: rise .9s ease both;
+}
+
+.rank-label {
+  font-weight: bold;
+  color: var(--gold);
+  letter-spacing: 2px;
+  font-size: 12px;
+  margin: 8px 0;
+}
+
+.first .rank-label { font-size: 14px; }
+
+.crown {
+  font-size: 42px;
+  display: block;
+  animation: crown 2s infinite ease-in-out;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 4px solid #ffffffaa;
+  object-fit: cover;
+  background: #d7e6eb;
+}
+
+.first .avatar {
+  width: 120px;
+  height: 120px;
+  border: 5px solid var(--gold);
+}
+
+.captain-name {
+  font-weight: bold;
+  font-size: 17px;
+  margin: 12px 0 5px;
+  overflow-wrap: anywhere;
+}
+
+.first .captain-name { font-size: 21px; }
+
+.zone {
+  color: #b9d6e1;
+  font-size: 12px;
+}
+
+.score {
+  color: var(--gold);
+  font-size: 27px;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.first .score { font-size: 34px; }
+
+.medal {
+  font-size: 27px;
+  margin-bottom: 6px;
+}
+
+.section-heading {
+  text-align: center;
+  font-size: 19px;
+  letter-spacing: 3px;
+  margin: 30px 0 20px;
+}
+
+.rankings {
+  max-width: 850px;
+  margin: auto;
+  padding: 0 18px 45px;
+}
+
+.rank-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #ffffff0d;
+  border: 1px solid #ffffff15;
+  border-radius: 12px;
+  padding: 13px 17px;
+  margin: 10px 0;
+  animation: appear .5s ease both;
+  transition: transform .35s ease, background .35s ease;
+}
+
+.rank-row:hover { transform: translateX(5px); background: #ffffff18; }
+
+.rank-number {
+  width: 35px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #c6e4ee;
+  text-align: center;
+}
+
+.rank-row img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #d7e6eb;
+  border: 2px solid #7eb8d0;
+}
+
+.rank-info { flex: 1; min-width: 0; }
+.rank-info strong { display: block; font-size: 15px; }
+.rank-info small { color: #b7d3df; display: block; margin-top: 5px; }
+
+.rank-score {
+  font-size: 21px;
+  font-weight: bold;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #9dbdca;
+  font-size: 12px;
+  border-top: 1px solid #ffffff1c;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes crown {
+  0%,100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-7px) rotate(4deg); }
+}
+
+@media(max-width:600px) {
+  .podium { gap: 7px; padding: 0 8px; }
+  .winner { padding: 15px 5px; }
+  .winner.first { padding: 20px 5px; }
+  .avatar { width: 65px; height: 65px; }
+  .first .avatar { width: 82px; height: 82px; }
+  .captain-name { font-size: 12px; }
+  .first .captain-name { font-size: 15px; }
+  .score { font-size: 20px; }
+  .first .score { font-size: 25px; }
+  .crown { font-size: 30px; }
+  .rank-row { gap: 9px; padding: 11px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <!-- Upload your logo into the repository and use its exact filename here -->
+  <img class="logo" src="HarGharDiwaliLogo.png"
+       alt="Har Ghar Diwali"
+       onerror="this.style.display='none'">
+
+  <h1>Captain's Leaderboard</h1>
+  <div class="subtitle">HAR GHAR DIWALI • CLOSING CHAMPIONS</div>
+  <div class="green-line"></div>
+  <div class="summary" id="summary">Celebrating our champions across India</div>
+</header>
+
+<main>
+  <section class="podium" id="podium"></section>
+
+  <div class="section-heading">THE LEADERBOARD</div>
+  <section class="rankings" id="rankings"></section>
+</main>
+
+<footer>
+  ULTRAFRESH MODULAR SOLUTIONS · HAR GHAR DIWALI
+  <br><br>
+  <span id="updated">Loading leaderboard...</span>
+</footer>
+
+<script>
+// STEP 2: We will insert your published Google Sheet CSV URL here.
+const SHEET_CSV_URL = "";
+
+// Sample preview data. Your actual Google Sheet will replace this.
+const sampleData = [
+  {zone:"West",name:"Anupam Saxena",score:3,photo:""},
+  {zone:"West",name:"Sanjay Choulkar",score:6,photo:""},
+  {zone:"East I",name:"Jagabandu Nag",score:1,photo:""},
+  {zone:"East I",name:"Sanjib Nandi",score:2,photo:""},
+  {zone:"East II",name:"Saurabh Gupta",score:3,photo:""},
+  {zone:"East III",name:"Pankoj Bhattacharjee",score:5,photo:""},
+  {zone:"North I",name:"Tajinder Singh",score:1,photo:""},
+  {zone:"North II",name:"Maninder Singh",score:2,photo:""},
+  {zone:"South I",name:"Thomas JA",score:3,photo:""},
+  {zone:"South II",name:"Mengani Lachaiah",score:5,photo:""},
+  {zone:"South III",name:"Vishwanath Belliappa",score:2,photo:""}
+];
+
+let previousOrder = [];
+
+function avatarHTML(photo, name) {
+  const safeName = String(name).replace(/&/g,"&amp;").replace(/"/g,"&quot;");
+  if (photo) {
+    return `<img class="avatar" src="${photo}" alt="${safeName}"
+      onerror="this.style.display='none'">`;
+  }
+  return `<div class="avatar" style="display:inline-flex;align-items:center;justify-content:center;color:#17394d;font-weight:bold;font-size:25px">${safeName.charAt(0).toUpperCase()}</div>`;
+}
+
+function render(data) {
+  data.sort((a,b) => b.score - a.score || a.name.localeCompare(b.name));
+
+  const top = data.slice(0,3);
+  const positions = [
+    {rank:2, item:top[1], cls:"second", medal:"🥈"},
+    {rank:1, item:top[0], cls:"first", medal:""},
+    {rank:3, item:top[2], cls:"third", medal:"🥉"}
+  ].filter(x=>x.item);
+
+  document.getElementById("podium").innerHTML = positions.map(p => `
+    <div class="winner ${p.cls}" key="${p.item.name}">
+      ${p.rank===1?'<span class="crown">👑</span>':`<div class="medal">${p.medal}</div>`}
+      <div class="rank-label">RANK ${p.rank}</div>
+      ${avatarHTML(p.item.photo,p.item.name)}
+      <div class="captain-name">${p.item.name}</div>
+      <div class="zone">${p.item.zone}</div>
+      <div class="score">${p.item.score} <small style="font-size:12px">CLOSINGS</small></div>
+    </div>
+  `).join("");
+
+  document.getElementById("rankings").innerHTML = data.slice(3).map((p,i)=>`
+    <div class="rank-row">
+      <div class="rank-number">${i+4}</div>
+      ${avatarHTML(p.photo,p.name)}
+      <div class="rank-info">
+        <strong>${p.name}</strong>
+        <small>${p.zone}</small>
+      </div>
+      <div class="rank-score">${p.score} <small style="font-size:10px">CLOSINGS</small></div>
+    </div>
+  `).join("");
+
+  document.getElementById("summary").textContent =
+    `${data.length} Captains • ${data.reduce((s,p)=>s+p.score,0)} Total Closings`;
+
+  previousOrder = data.map(p=>p.name);
+  document.getElementById("updated").textContent =
+    "Last updated: " + new Date().toLocaleTimeString("en-IN");
+}
+
+// CSV parser supporting quoted cells.
+function parseCSV(text) {
+  const rows = [];
+  let row = [], cell = "", quoted = false;
+  for(let i=0;i<text.length;i++) {
+    const c=text[i];
+    if(c === '"' && quoted && text[i+1] === '"') {
+      cell+='"'; i++;
+    } else if(c === '"') {
+      quoted=!quoted;
+    } else if(c === ',' && !quoted) {
+      row.push(cell); cell="";
+    } else if((c === '\n' || c === '\r') && !quoted) {
+      if(c === '\r' && text[i+1] === '\n') i++;
+      row.push(cell);
+      if(row.some(v=>v.trim())) rows.push(row);
+      row=[]; cell="";
+    } else {
+      cell+=c;
+    }
+  }
+  row.push(cell);
+  if(row.some(v=>v.trim())) rows.push(row);
+  return rows;
+}
+
+async function refresh() {
+  if(!SHEET_CSV_URL) {
+    render([...sampleData]);
+    return;
+  }
+  try {
+    const response=await fetch(SHEET_CSV_URL + (SHEET_CSV_URL.includes("?")?"&":"?") + "t="+Date.now());
+    if(!response.ok) throw new Error("Sheet not available");
+    const rows=parseCSV(await response.text());
+    const data=rows.slice(1).filter(r=>r[1] && r[1].trim()).map(r=>({
+      zone:r[0] || "",
+      name:r[1].trim(),
+      score:Number(r[2]) || 0,
+      photo:r[3] || ""
+    }));
+    render(data);
+  } catch(error) {
+    console.error(error);
+    document.getElementById("updated").textContent =
+      "Unable to refresh data. Showing last available preview.";
+  }
+}
+
+refresh();
+setInterval(refresh,60000);
+</script>
+</body>
+</html>
